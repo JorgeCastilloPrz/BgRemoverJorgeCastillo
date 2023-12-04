@@ -6,6 +6,8 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +25,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -72,13 +75,25 @@ fun PicturesList(viewModel: PicturesListViewModel, onPictureSelected: (Uri) -> U
             )
         },
     ) { paddingValues ->
-        LazyColumn(
-            Modifier
-                .padding(paddingValues)
-                .padding(Spacings.small),
-        ) {
-            items(uiState.pictures) {
-                PictureRow(it)
+        if (uiState.pictures.isEmpty()) {
+            Box(
+                Modifier.fillMaxSize().padding(Spacings.xlarge),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Click on the add button in the top bar to process new images.",
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+        } else {
+            LazyColumn(
+                Modifier
+                    .padding(paddingValues)
+                    .padding(Spacings.small),
+            ) {
+                items(uiState.pictures) {
+                    PictureRow(it)
+                }
             }
         }
     }
