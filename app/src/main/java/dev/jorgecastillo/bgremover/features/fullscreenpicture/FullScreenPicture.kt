@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PictureUiState
 import me.saket.telephoto.zoomable.coil.ZoomableAsyncImage
 import java.io.Serializable
@@ -53,8 +54,8 @@ fun FullScreenPicture(
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
         ) {
-            ZoomableAsyncImage(
-                modifier = Modifier.fillMaxSize().background(Color.Red),
+            AsyncImage(
+                modifier = Modifier.fillMaxSize(),
                 model = pictureUri,
                 contentDescription = "zoomable img"
             )

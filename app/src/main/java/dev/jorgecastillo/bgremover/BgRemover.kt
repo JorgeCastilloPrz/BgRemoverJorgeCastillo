@@ -27,11 +27,11 @@ fun BgRemover() {
                 onPictureSelected = picturesListViewModel::onPictureSelected,
                 onItemClick = {
                     navController.navigate(
-                        "$FULL_SCREEN_PICTURE_ROUTE/{${
+                        "$FULL_SCREEN_PICTURE_ROUTE/${
                             URLEncoder.encode(
                                 it.originalUri.path
                             )
-                        }}"
+                        }"
                     )
                 }
             )
