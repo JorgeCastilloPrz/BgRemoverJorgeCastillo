@@ -4,6 +4,8 @@ import android.content.Context
 import android.net.Uri
 import kotlinx.coroutines.CoroutineDispatcher
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -19,9 +21,18 @@ class PicturePreProcessor @Inject constructor(
         val inputStream = ctx.contentResolver.openInputStream(uri)
         val bytes = inputStream!!.readBytes()
         inputStream.close()
-        return RequestBody.create(
-            MediaType.parse("application/octet"),
-            bytes
-        )
+        val body = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("image_file", "image_file", RequestBody.create(
+                "application/octet".toMediaType(),
+                bytes
+            ))
+            .addFormDataPart("format", "png")
+            .addFormDataPart("channels", "rgba")
+            .addFormDataPart("bg_color", "")
+            .addFormDataPart("size", "full")
+            .addFormDataPart("crop", "false")
+
+        return body.build()
     }
 }
