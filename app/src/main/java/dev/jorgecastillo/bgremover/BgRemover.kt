@@ -29,7 +29,7 @@ fun BgRemover() {
                     navController.navigate(
                         "$FULL_SCREEN_PICTURE_ROUTE/${
                             URLEncoder.encode(
-                                it.originalUri.path
+                                it.originalUri.toString()
                             )
                         }"
                     )
