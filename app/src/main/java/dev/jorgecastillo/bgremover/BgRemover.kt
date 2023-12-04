@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.jorgecastillo.bgremover.features.fullscreenpicture.FullScreenPicture
-import dev.jorgecastillo.bgremover.features.fullscreenpicture.FullScreenPictureViewModel
 import dev.jorgecastillo.bgremover.features.pictureslist.PicturesList
 import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PicturesListViewModel
 
@@ -21,15 +20,13 @@ fun BgRemover() {
             val picturesListViewModel = hiltViewModel<PicturesListViewModel>()
             PicturesList(
                 viewModel = picturesListViewModel,
-                onPictureSelected = picturesListViewModel::onPictureSelected
+                onPictureSelected = picturesListViewModel::onPictureSelected,
+                onItemClick = { navController.navigate("FULL_SCREEN_PICTURE_ROUTE/{${it.originalUri}}") }
             )
         }
         composable("$FULL_SCREEN_PICTURE_ROUTE/{pictureUri}") { backStackEntry ->
-            val pictureUri = backStackEntry.arguments?.getString("pictureUri")!!
-            val fullScreenPictureViewModel = hiltViewModel<FullScreenPictureViewModel>()
-            fullScreenPictureViewModel.onPictureSelected(pictureUri)
-
-            FullScreenPicture(fullScreenPictureViewModel) { navController.navigateUp() }
+            val pictureUri = backStackEntry.arguments?.getSerializable("pictureUri")!!
+            FullScreenPicture(pictureUri) { navController.navigateUp() }
         }
     }
 }

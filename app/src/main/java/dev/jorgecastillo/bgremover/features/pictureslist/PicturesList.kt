@@ -30,11 +30,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import dev.jorgecastillo.bgremover.R
+import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PictureUiState
 import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PicturesListViewModel
 import dev.jorgecastillo.bgremover.ui.Spacings
 
 @Composable
-fun PicturesList(viewModel: PicturesListViewModel, onPictureSelected: (Uri) -> Unit) {
+fun PicturesList(
+    viewModel: PicturesListViewModel,
+    onPictureSelected: (Uri) -> Unit,
+    onItemClick: (PictureUiState) -> Unit
+) {
     val uiState by viewModel.uiState.collectAsState()
 
     val launcher =
@@ -77,7 +82,9 @@ fun PicturesList(viewModel: PicturesListViewModel, onPictureSelected: (Uri) -> U
     ) { paddingValues ->
         if (uiState.pictures.isEmpty()) {
             Box(
-                Modifier.fillMaxSize().padding(Spacings.xlarge),
+                Modifier
+                    .fillMaxSize()
+                    .padding(Spacings.xlarge),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
