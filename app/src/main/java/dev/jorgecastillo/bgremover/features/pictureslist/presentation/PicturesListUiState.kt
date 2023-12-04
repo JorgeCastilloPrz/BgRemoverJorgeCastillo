@@ -1,5 +1,8 @@
 package dev.jorgecastillo.bgremover.features.pictureslist.presentation
 
+import android.graphics.Bitmap
+import android.net.Uri
+
 /**
  * I'd normally go for sealed interface or sealed class with exclusive states if we were dealing
  * with more complex UI state.
@@ -19,6 +22,6 @@ data class PicturesListUiState(
 }
 
 data class PictureUiState(
-    val originalUrl: String,
-    val processedUrl: String
+    val originalUri: Uri,
+    val processedBitmap: Bitmap
 )

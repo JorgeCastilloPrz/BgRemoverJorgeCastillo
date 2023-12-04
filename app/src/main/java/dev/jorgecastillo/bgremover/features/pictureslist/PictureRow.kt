@@ -2,6 +2,8 @@
 
 package dev.jorgecastillo.bgremover.features.pictureslist
 
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -21,8 +23,7 @@ fun PictureRow(picture: PictureUiState) {
         onClick = { /*TODO*/ }
     ) {
         Column(modifier = Modifier.padding(Spacings.normal)) {
-            Text(picture.originalUrl)
-            Text(picture.processedUrl)
+            Text(text = picture.originalUri.path!!)
         }
     }
 }
@@ -33,8 +34,8 @@ fun PictureRowPreview() {
     BgRemoverJorgeCastilloTheme {
         PictureRow(
             picture = PictureUiState(
-                originalUrl = "https://photoroom.com/api/original",
-                processedUrl = "https://photoroom.com/api/original"
+                originalUri = Uri.parse("https://photoroom.com/api/original"),
+                processedBitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ALPHA_8)
             )
         )
     }
