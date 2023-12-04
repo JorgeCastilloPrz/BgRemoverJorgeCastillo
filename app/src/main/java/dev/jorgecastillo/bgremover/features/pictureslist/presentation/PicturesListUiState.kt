@@ -1,13 +1,11 @@
-package dev.jorgecastillo.bgremover.features.pictureslist
-
-import dev.jorgecastillo.bgremover.features.pictureslist.domain.Picture
+package dev.jorgecastillo.bgremover.features.pictureslist.presentation
 
 /**
  * I'd normally go for sealed interface or sealed class with exclusive states if we were dealing
  * with more complex UI state.
  */
 data class PicturesListUiState(
-    val pictures: List<Picture>,
+    val pictures: List<PictureUiState>,
     val loading: Boolean,
     val errorMessage: String?
 ) {
@@ -19,3 +17,8 @@ data class PicturesListUiState(
         )
     }
 }
+
+data class PictureUiState(
+    val originalUrl: String,
+    val processedUrl: String
+)

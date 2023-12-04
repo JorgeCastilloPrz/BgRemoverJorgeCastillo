@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import dev.jorgecastillo.bgremover.features.fullscreenpicture.FullScreenPicture
 import dev.jorgecastillo.bgremover.features.fullscreenpicture.FullScreenPictureViewModel
 import dev.jorgecastillo.bgremover.features.pictureslist.PicturesList
-import dev.jorgecastillo.bgremover.features.pictureslist.PicturesListViewModel
+import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PicturesListViewModel
 
 private const val PICTURES_LIST_ROUTE = "picturesList"
 private const val FULL_SCREEN_PICTURE_ROUTE = "fullScreenPicture"
