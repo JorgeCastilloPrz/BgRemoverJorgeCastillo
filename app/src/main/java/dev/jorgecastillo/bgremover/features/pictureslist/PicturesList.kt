@@ -31,15 +31,13 @@ import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PicturesLi
 import dev.jorgecastillo.bgremover.ui.Spacings
 
 @Composable
-fun PicturesList(viewModel: PicturesListViewModel, onPictureSelected: (String) -> Unit) {
+fun PicturesList(viewModel: PicturesListViewModel, onPictureSelected: (Uri) -> Unit) {
     val uiState by viewModel.uiState.collectAsState()
 
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             //When the user has selected a photo, its URI is returned here
-            uri?.let {
-                onPictureSelected(it.path.toString())
-            }
+            uri?.let { onPictureSelected(it) }
         }
 
     Scaffold(

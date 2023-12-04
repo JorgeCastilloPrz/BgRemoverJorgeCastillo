@@ -1,5 +1,6 @@
 package dev.jorgecastillo.bgremover.features.pictureslist.data
 
+import android.net.Uri
 import dev.jorgecastillo.bgremover.features.pictureslist.domain.Picture
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -76,12 +77,14 @@ class PicturesRepository @Inject constructor(
         )
     ).flowOn(dispatcher)
 
-    suspend fun onPictureSelected(uri: String) {
+    suspend fun onPictureSelected(uri: Uri) {
         withContext(dispatcher) {
             val body = picturePreProcessor.processPicture(uri)
             try {
                 service.sendImageToProcess(body)
             } catch (e: IOException) {
+                println(e)
+            }catch (e: Exception) {
                 println(e)
             }
         }

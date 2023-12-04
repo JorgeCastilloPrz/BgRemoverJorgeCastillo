@@ -1,5 +1,6 @@
 package dev.jorgecastillo.bgremover.features.pictureslist.presentation
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +24,7 @@ class PicturesListViewModel @Inject constructor(
             initialValue = PicturesListUiState.DEFAULT,
         )
 
-    fun onPictureSelected(uri: String) {
+    fun onPictureSelected(uri: Uri) {
         viewModelScope.launch {
             repo.onPictureSelected(uri)
         }
