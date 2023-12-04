@@ -1,11 +1,16 @@
 package dev.jorgecastillo.bgremover.features.pictureslist.data
 
 import dev.jorgecastillo.bgremover.features.pictureslist.domain.Picture
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class PicturesRepository @Inject constructor() {
+class PicturesRepository @Inject constructor(
+    private val dispatcher: CoroutineDispatcher
+) {
 
     fun loadPictures(): Flow<List<Picture>> = flowOf(
         listOf(
@@ -66,7 +71,7 @@ class PicturesRepository @Inject constructor() {
                 "https://photoroom.com/api/original"
             ),
         )
-    )
+    ).flowOn(dispatcher)
 
     suspend fun onPictureSelected(uri: String) {
         TODO("Not yet implemented")
