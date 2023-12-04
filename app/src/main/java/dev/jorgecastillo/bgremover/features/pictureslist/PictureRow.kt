@@ -4,13 +4,11 @@ package dev.jorgecastillo.bgremover.features.pictureslist
 
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -22,10 +20,10 @@ import dev.jorgecastillo.bgremover.ui.Spacings
 import dev.jorgecastillo.bgremover.ui.theme.BgRemoverJorgeCastilloTheme
 
 @Composable
-fun PictureRow(picture: PictureUiState) {
+fun PictureRow(picture: PictureUiState, onItemClick: (PictureUiState) -> Unit) {
     Card(
         modifier = Modifier.padding(Spacings.small),
-        onClick = { /*TODO*/ }
+        onClick = { onItemClick(picture) }
     ) {
         Row(modifier = Modifier.padding(Spacings.normal)) {
             AsyncImage(
@@ -52,7 +50,8 @@ fun PictureRowPreview() {
             picture = PictureUiState(
                 originalUri = Uri.parse("https://photoroom.com/api/original"),
                 processedBitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ALPHA_8)
-            )
+            ),
+            onItemClick = {}
         )
     }
 }

@@ -99,7 +99,7 @@ fun PicturesList(
                     .padding(Spacings.small),
             ) {
                 items(uiState.pictures) {
-                    PictureRow(it)
+                    PictureRow(it, onItemClick)
                 }
             }
         }
