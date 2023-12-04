@@ -5,6 +5,7 @@ package dev.jorgecastillo.bgremover.features.fullscreenpicture
 import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -50,11 +51,11 @@ fun FullScreenPicture(
                 .padding(horizontal = 16.dp, vertical = 8.dp),
         ) {
             Text(modifier = Modifier
-                .weight(1f)
                 .padding(Spacings.large), text = "Pinch to zoom! 👌")
             ZoomableAsyncImage(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .weight(1f)
+                    .fillMaxWidth()
                     .padding(top = Spacings.normal),
                 model = pictureUri,
                 contentDescription = "zoomable img"

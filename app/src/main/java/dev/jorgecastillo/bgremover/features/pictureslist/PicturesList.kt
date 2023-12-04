@@ -54,8 +54,7 @@ fun PicturesList(
                 title = {
                     Text(
                         stringResource(R.string.app_name),
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
