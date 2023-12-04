@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BgRemoverJorgeCastillo</string>
+    <string name="btn_add_picture">Add new picture</string>
 </resources>

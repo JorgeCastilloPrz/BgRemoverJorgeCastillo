@@ -6,10 +6,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import javax.inject.Inject
 
 class PicturesRepository @Inject constructor(
-    private val dispatcher: CoroutineDispatcher
+    private val dispatcher: CoroutineDispatcher,
+    private val picturePreProcessor: PicturePreProcessor,
+    private val service: PhotoRoomService
 ) {
 
     fun loadPictures(): Flow<List<Picture>> = flowOf(
@@ -74,6 +77,13 @@ class PicturesRepository @Inject constructor(
     ).flowOn(dispatcher)
 
     suspend fun onPictureSelected(uri: String) {
-        TODO("Not yet implemented")
+        withContext(dispatcher) {
+            val body = picturePreProcessor.processPicture(uri)
+            try {
+                service.sendImageToProcess(body)
+            } catch (e: IOException) {
+                println(e)
+            }
+        }
     }
 }

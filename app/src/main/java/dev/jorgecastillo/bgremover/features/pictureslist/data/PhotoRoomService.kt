@@ -2,11 +2,14 @@ package dev.jorgecastillo.bgremover.features.pictureslist.data
 
 import okhttp3.RequestBody
 import retrofit2.http.Body
-import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 
 interface PhotoRoomService {
-    @POST("https://sdk.photoroom.com/v1/segment")
-    suspend fun sendImageToProcess(@Body photo: RequestBody): List<Repo?>
+    @POST("v1/segment")
+    suspend fun sendImageToProcess(
+        @Body photo: RequestBody,
+        @Header("Authorization") apiKey: String = "4e1cf2956b116c4015e5086ebd6b653614f4d1c0" // TODO should be moved to OkHttp interceptor
+    ): List<ProcessImageResponse>
 }
