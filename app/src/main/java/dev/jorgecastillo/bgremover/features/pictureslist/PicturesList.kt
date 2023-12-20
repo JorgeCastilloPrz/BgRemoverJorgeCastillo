@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.jorgecastillo.bgremover.R
 import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PictureUiState
 import dev.jorgecastillo.bgremover.features.pictureslist.presentation.PicturesListViewModel
@@ -40,7 +41,7 @@ fun PicturesList(
     onPictureSelected: (Uri) -> Unit,
     onItemClick: (PictureUiState) -> Unit
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val launcher =
         rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
